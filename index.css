@@ -1,0 +1,611 @@
+:root {
+  --primary-color: #3aa2f5;
+  --text-color: #737373;
+  --primary-font: 'Montserrat', sans-serif;
+  --background: #f8f8f8;
+  --secondary-background: #ffffff;
+  --box-shadow: 0 0 0.6rem rgb(75, 90, 119, 0.05);
+  --white-color: #ffffff;
+  --black-color: #181818;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--primary-font);
+  font-weight: var(--text-color);
+  color: var(--text-color);
+  background: var(--background);
+  min-height: 100vh;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  transform: translateY(-0.3rem);
+}
+
+button {
+  outline: none;
+}
+
+img {
+  width: 100%;
+}
+
+.layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4rem 1fr 2fr 1fr 4rem;
+  grid-template-rows: 8rem min-content min-content 8rem;
+  grid-template-areas:
+    'navigation navigation navigation navigation navigation'
+    '. profile main bank .'
+    '. profile passport . .'
+    '. footer footer footer .';
+  justify-content: center;
+  grid-gap: 2rem;
+}
+
+.profile,
+.education,
+.bank,
+.passport,
+.footer {
+  background: var(--white-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 1rem;
+  padding: 2rem;
+  position: relative;
+}
+
+.navigation {
+  grid-area: navigation;
+  background: var(--white-color);
+  box-shadow: var(--box-shadow);
+  padding: 0 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navigation__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu__toggler,
+.chat__menu__toggler,
+.notification__menu__toggler,
+.profile__menu__toggler {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu__toggler img,
+.chat__menu__toggler img,
+.notification__menu__toggler img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.profile__menu__toggler img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.menu__toggler:hover,
+.chat__menu__toggler:hover,
+.notification__menu__toggler:hover,
+.profile__menu__toggler:hover {
+  transform: translateY(-0.3rem);
+}
+
+.menu__toggler img {
+  display: block;
+}
+
+.navigation__search {
+  margin-left: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__search i {
+  font-size: 1.5rem;
+  background: var(--background);
+  border-radius: 50%;
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 2.5rem;
+  border-bottom-left-radius: 2.5rem;
+}
+
+.navigation__search input {
+  height: 3.5rem;
+  width: 25rem;
+  padding: 0 1rem;
+  border-top-right-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: none;
+  background: var(--background);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.navigation__search input:focus {
+  width: 30rem;
+}
+
+.navigation__logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--black-color);
+}
+
+.account__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account__menu > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.account__menu h3 {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.profile {
+  grid-area: profile;
+}
+
+.profile__img {
+  position: relative;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  max-width: 25rem;
+  height: 25rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.profile__img::before,
+.profile__img::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.profile__img::before {
+  z-index: 9;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0),
+    rgba(58, 162, 245, 0.6)
+  );
+  opacity: 0;
+}
+
+.profile__img:hover img {
+  transform: scale(1.25) rotate(-10deg);
+}
+
+.profile__img:hover::before {
+  opacity: 1;
+}
+
+.profile__img img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.profile__information {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 9;
+  color: var(--white-color);
+}
+
+.profile__information h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  line-height: 1;
+}
+
+.profile__information h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.profile__information p {
+  background: rgba(24, 24, 24, 0.7);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.img__toggler {
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  z-index: 9;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+   
+}
+
+.img__toggler i {
+  font-size: 1.5rem;
+}
+
+.img__toggler:hover {
+  border-radius: 50%;
+  transform: translateY(-0.3rem);
+}
+
+.profile__visaExpire {
+  max-width: 25rem;
+  background: #48bc60;
+  color: var(--white-color);
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+
+.details__field:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.details__field h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.details__field p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.details__field a {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.details__field a:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.edit {
+  background: transparent;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  transition: all 0.3s ease;
+}
+
+.edit.bottom {
+  top: initial;
+  bottom: 0;
+  right: 2rem;
+}
+
+.edit img {
+  width: 1.5rem;
+}
+
+.edit:hover {
+  border-radius: 50%;
+  transform: translateY(-0.3rem);
+}
+
+.main {
+  align-self: start;
+  grid-area: main;
+}
+
+.education {
+  margin-bottom: 2rem;
+}
+
+.education__details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.education__details div:first-child {
+  margin-right: 10rem;
+}
+
+.section__icon {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  transition: all 0.3s ease;
+}
+
+.section__icon img {
+  width: 2.5rem;
+}
+
+.section__icon.colored {
+  background: var(--primary-color);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.section__icon:hover {
+  border-radius: 50%;
+  transform: translateY(-0.3rem);
+}
+
+.bank {
+  align-self: start;
+  grid-area: bank;
+}
+
+.passport {
+  align-self: start;
+  grid-area: passport;
+  background: linear-gradient(to right, #3d3bee, #72cbde);
+}
+
+.passport__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.passport__details .section__icon {
+  margin-bottom: 0;
+}
+
+.passport__details .details__field {
+  color: var(--white-color);
+  margin: 0;
+}
+
+.passport__details .details__field p {
+  margin: 0;
+}
+
+.passport__details .img__toggler {
+  position: initial;
+}
+
+.footer {
+  grid-area: footer;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer__social {
+  display: flex;
+}
+
+.social__item i {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #a9a9a9;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social__item:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.social__item:hover i {
+  transform: translateY(-0.3rem);
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.footer h4 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.footer__privacy a {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.footer__privacy a:first-child {
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 60%;
+  }
+
+  .layout {
+    grid-template-columns: 2rem 1fr 2fr 1fr 2rem;
+  }
+
+  .navigation {
+    padding: 0 4rem;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  html {
+    font-size: 57%;
+  }
+
+  .layout {
+    grid-template-rows: auto min-content min-content auto;
+    grid-template-columns: 1rem 1fr 2fr 1fr 1rem;
+    grid-template-areas:
+      'navigation navigation navigation navigation navigation'
+      '. profile profile profile .'
+      '. main main main .'
+      '. bank bank bank .'
+      '. footer footer footer .';
+    grid-gap: 1rem;
+  }
+
+  .navigation {
+    padding: 0 3rem;
+  }
+
+  .navigation__logo {
+    display: none;
+  }
+
+  .navigation,
+  .footer {
+    padding: 3rem 2rem;
+  }
+
+  .profile__img,
+  .profile__visaExpire {
+    margin-left: initial;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 55%;
+  }
+
+  .navigation,
+  .education__details,
+  .footer {
+    flex-direction: column;
+  }
+
+  .education__details > div:first-child {
+    margin-right: initial;
+    margin-bottom: 5rem;
+  }
+
+  .navigation__menu {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .navigation__search,
+  .account__menu,
+  .navigation__search input {
+    width: 100% !important;
+  }
+
+  .footer > * {
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .account__menu h3 {
+    display: none;
+  }
+
+  .profile__img,
+  .profile__visaExpire {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .passport__details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .passport__details .section__icon {
+    margin-bottom: 4rem;
+  }
+
+  .passport__details .details__field {
+    margin-bottom: 3rem;
+  }
+}
